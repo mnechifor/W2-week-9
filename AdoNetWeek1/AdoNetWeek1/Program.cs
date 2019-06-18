@@ -31,7 +31,8 @@ namespace AdoNetWeek1
                 connection.Open();
 
                 var selectString = "select * from Author";
-                selectString += string.Format($" where Name = @nume");
+                selectString += string.Format($" where Name = @nume;" +
+                                              $"SELECT CAST(scope_identity() AS int)");
 
                 SqlCommand command = new SqlCommand
                 {
@@ -78,7 +79,8 @@ namespace AdoNetWeek1
                                    (@title
                                    ,@publisherId
                                    ,@year
-                                   ,@price)";
+                                   ,@price);
+                SELECT CAST(scope_identity() AS int)";
 
                 SqlCommand command = new SqlCommand
                 {
